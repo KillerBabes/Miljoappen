@@ -33,16 +33,16 @@ public class Read {
 				String[] fields = line.split(":");
 
 				if (fields[0].equalsIgnoreCase("mat")) {
-					mat.add(new Product(fields[1], Integer.parseInt(fields[2])));
+					mat.add(new Product(fields[1], Double.parseDouble(fields[2])));
 				}
 				if (fields[0].equalsIgnoreCase("transport")) {
-					transport.add(new Product(fields[1], Integer.parseInt(fields[2])));
+					transport.add(new Product(fields[1], Double.parseDouble(fields[2])));
 				}
 				if (fields[0].equalsIgnoreCase("boende")) {
-					boende.add(new Product(fields[1], Integer.parseInt(fields[2])));
+					boende.add(new Product(fields[1], Double.parseDouble(fields[2])));
 				}
 				if (fields[0].equalsIgnoreCase("övrigt")) {
-					ovrigt.add(new Product(fields[1], Integer.parseInt(fields[2])));
+					ovrigt.add(new Product(fields[1], Double.parseDouble(fields[2])));
 				}
 				line = file.readLine();
 			}
