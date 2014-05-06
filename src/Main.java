@@ -1,9 +1,12 @@
+import java.io.*;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import javax.imageio.*;
 
 public class Main extends JFrame {
 	private JPanel startPanel;
+	private JPanel navPanel;
 	private Container contentPane;
 
 	public static void main(String[] args) {
@@ -11,13 +14,88 @@ public class Main extends JFrame {
 	}
 
 	public Main() {
+		super("Miljöappen");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setPreferredSize(new Dimension(480, 800));
 		contentPane = getContentPane();
+		makeNavPanel();
 		makeStartPanel();
-		contentPane.add(startPanel);
+		contentPane.setLayout(new BorderLayout());
+		contentPane.add(startPanel, BorderLayout.CENTER);
+		contentPane.add(navPanel, BorderLayout.SOUTH);
 		pack();
 		setVisible(true);
+	}
+
+	private void makeNavPanel() {
+		JPanel panel = new JPanel();
+		panel.setLayout(new GridLayout(1, 0, 50, 0));
+		panel.setBackground(Color.BLACK);
+
+		JButton button;
+
+		button = new JButton();
+
+		try {
+			Image img = ImageIO.read(new File("../res/nav/back.png"));
+			button.setIcon(new ImageIcon(img));
+		} catch (IOException e) {
+			System.err.println("error: Couldn't read file \"../res/nav/back.png\".");
+		}
+
+		button.setMargin(new Insets(0, 0, 0, 0));
+		button.setBackground(Color.BLACK);
+		button.setBorder(null);
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent d) {
+				//back();
+				System.out.println("Back");
+			}
+		});
+		panel.add(button);
+
+		button = new JButton();
+
+		try {
+			Image img = ImageIO.read(new File("../res/nav/home.png"));
+			button.setIcon(new ImageIcon(img));
+		} catch (IOException e) {
+			System.err.println("error: Couldn't read file \"../res/nav/home.png\".");
+		}
+
+		button.setMargin(new Insets(0, 0, 0, 0));
+		button.setBackground(Color.BLACK);
+		button.setBorder(null);
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent d) {
+				System.exit(0);
+			}
+		});
+		panel.add(button);
+
+		button = new JButton();
+
+		try {
+			Image img = ImageIO.read(new File("../res/nav/multitask.png"));
+			button.setIcon(new ImageIcon(img));
+		} catch (IOException e) {
+			System.err.println("error: Couldn't read file \"../res/nav/multitask.png\".");
+		}
+
+		button.setMargin(new Insets(0, 0, 0, 0));
+		button.setBackground(Color.BLACK);
+		button.setBorder(null);
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent d) {
+				//null
+				System.out.println("Multitask");
+			}
+		});
+		panel.add(button);
+
+		navPanel = new JPanel();
+		navPanel.setBackground(Color.BLACK);
+		navPanel.add(panel);
 	}
 
 	private void makeStartPanel() {
