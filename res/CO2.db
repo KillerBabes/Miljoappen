@@ -1,0 +1,54 @@
+//Olika kategorier som produkterna delas in i är:Transport, mat, boende,
+//produkter och övrigt.
+//Kategori:Produktnamn:utsläpp
+
+Mat:Äpplen Antal:0.033528
+Boende:Lampa 60W timmar:0.00354
+Mat:Bananer antal:0.09906
+Transport:Flyg timmar:98.736
+Transport:Flyg kilometer:0.1122
+Transport:Tåg kilometer:0.015
+Transport:Tunnelbana kilometer:0.078
+Mat:Morötter antal:0.014478
+Mat:Te koppar:0.00236
+Produkter:Dator timmar:0.002
+Transport:Bil kilometer:0.173
+Produkter:Mobiltelefon laddning:0.000236
+Mat:Tomater antal:0.35052
+Mat:Mjölk liter:0.3631
+Mat:Fläskkött kg:5.5098
+Produkter:Kylskåp år:10.443
+Produkter:TV timmar:0.009617
+Mat:Lax kg:6.7056
+Mat:Ris portion:0.08382
+Mat:Räkor kg:16.764
+Mat:Brödlimpor antal:0.03352
+Mat:Ölflaskor antal:0.2286
+Övrigt: CO2 Kg:1.0
+Mat:Tonfisk Kg:4.07
+Mat:Bönor Kg:0.88
+Mat:Tofu Kg:0.71
+Mat:Ost Kg:9.81
+Mat:Yoghurt Kg:0.90
+Mat:Apelsiner Kg:0.16
+Mat:Persikor Kg:0.21
+Mat:Jordgubbar Kg:0.30
+Mat:Vindruvor Kg:0.20
+Mat:Mjöl Kg:0.67
+Mat:Ris Kg:2.64
+Mat:Kyckling Kg:3.73
+Mat:Ägg Kg:2.11
+Mat:Nötkött Kg:16.23
+Mat:Kalkon Kg:4.59
+Mat:Mandel Kg:2.05
+Mat:Jordnötter Kg:1.04
+Mat:Smör Kg:1.17
+Mat:Matolja Kg:1.55
+Mat:Broccoli Kg:0.36
+Mat:Kål Kg:0.12
+Mat:Morötter Kg:0.11
+Mat:Sallad Kg:0.14
+Mat:Potatis Kg:0.25
+Mat:Tomater Kg:0.18
+
+
