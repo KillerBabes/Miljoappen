@@ -5,6 +5,8 @@ import javax.swing.*;
 import javax.imageio.*;
 
 public class Main extends JFrame {
+	private JPanel actionPanel;
+	private JLabel actionLabel;
 	private JPanel startPanel;
 	private JPanel navPanel;
 	private Container contentPane;
@@ -18,6 +20,7 @@ public class Main extends JFrame {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setPreferredSize(new Dimension(480, 800));
 		contentPane = getContentPane();
+		makeActionPanel();
 		makeNavPanel();
 		makeStartPanel();
 		contentPane.setLayout(new BorderLayout());
@@ -25,6 +28,46 @@ public class Main extends JFrame {
 		contentPane.add(navPanel, BorderLayout.SOUTH);
 		pack();
 		setVisible(true);
+	}
+
+	private void start() {
+		contentPane.removeAll();
+		contentPane.add(actionPanel, BorderLayout.NORTH);
+		contentPane.add(navPanel, BorderLayout.SOUTH);
+		pack();
+		setVisible(true);
+	}
+
+	private void makeActionPanel() {
+		JPanel panel = new JPanel();
+		panel.setLayout(new GridLayout(1, 0, 10, 0));
+
+		JButton button;
+
+		button = new JButton();
+
+		try {
+			Image img = ImageIO.read(new File("../res/action/menu.png"));
+			button.setIcon(new ImageIcon(img));
+		} catch (IOException e) {
+			System.err.println("error: Couldn't read file \"../res/action/menu.png\".");
+		}
+
+		button.setMargin(new Insets(0, 0, 0, 0));
+		button.setBorder(null);
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent d) {
+				//menu();
+				System.out.println("Menu");
+			}
+		});
+		panel.add(button);
+
+		actionLabel = new JLabel("Miljöappen");
+		actionLabel.setFont(new Font("Serif", Font.BOLD, 25));
+
+		actionPanel = new JPanel();
+		actionPanel.add(panel);
 	}
 
 	private void makeNavPanel() {
@@ -85,12 +128,6 @@ public class Main extends JFrame {
 		button.setMargin(new Insets(0, 0, 0, 0));
 		button.setBackground(Color.BLACK);
 		button.setBorder(null);
-		button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent d) {
-				//null
-				System.out.println("Multitask");
-			}
-		});
 		panel.add(button);
 
 		navPanel = new JPanel();
@@ -112,8 +149,7 @@ public class Main extends JFrame {
 		button = new JButton("Logga in");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent d) {
-				//logIn();
-				System.out.println("Logga in");
+				start();
 			}
 		});
 		panel.add(button);
@@ -121,8 +157,7 @@ public class Main extends JFrame {
 		button = new JButton("Ny användare");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent d) {
-				//newUser();
-				System.out.println("Ny användare");
+				start();
 			}
 		});
 		panel.add(button);
