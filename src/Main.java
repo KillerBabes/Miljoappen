@@ -9,7 +9,15 @@ public class Main extends JFrame {
 	private JLabel actionLabel;
 	private JPanel startPanel;
 	private JPanel navPanel;
+	private JPanel profilPanel;
+	private JPanel addPanel;
 	private Container contentPane;
+	private String currentPage;
+	private Read read;
+	private double carbon;
+	private double carbonGoal;
+	private JLabel carbonConsumedLabel;
+	private JLabel carbonLeftLabel;
 
 	public static void main(String[] args) {
 		new Main();
@@ -23,7 +31,15 @@ public class Main extends JFrame {
 		makeActionPanel();
 		makeNavPanel();
 		makeStartPanel();
+
+		read = new Read();
+		carbon = 30.0;
+		carbonGoal = 90.0;
+
+		makeProfilPanel();
+
 		contentPane.setLayout(new BorderLayout());
+		currentPage = "welcome";
 		contentPane.add(startPanel, BorderLayout.CENTER);
 		contentPane.add(navPanel, BorderLayout.SOUTH);
 		pack();
@@ -31,11 +47,32 @@ public class Main extends JFrame {
 	}
 
 	private void start() {
+		currentPage = "profil";
 		contentPane.removeAll();
 		contentPane.add(actionPanel, BorderLayout.NORTH);
 		contentPane.add(navPanel, BorderLayout.SOUTH);
+		contentPane.add(profilPanel, BorderLayout.CENTER);
+
 		pack();
 		setVisible(true);
+	}
+
+	private void add() {
+		currentPage = "add";
+		contentPane.removeAll();
+		contentPane.add(actionPanel, BorderLayout.NORTH);
+		contentPane.add(navPanel, BorderLayout.SOUTH);
+		contentPane.add(addPanel, BorderLayout.CENTER);
+		pack();
+		setVisible(true);
+	}
+
+	private void back() {
+		if (currentPage.equalsIgnoreCase("add")) {
+			start();
+		} else {
+			System.exit(0);
+		}
 	}
 
 	private void makeActionPanel() {
@@ -50,24 +87,81 @@ public class Main extends JFrame {
 			Image img = ImageIO.read(new File("../res/action/menu.png"));
 			button.setIcon(new ImageIcon(img));
 		} catch (IOException e) {
-			System.err.println("error: Couldn't read file \"../res/action/menu.png\".");
+			System.err.println("error: Couldn't read file \"../res/action/menu2.png\".");
 		}
 
 		button.setMargin(new Insets(0, 0, 0, 0));
 		button.setBorder(null);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent d) {
-				//menu();
-				System.out.println("Menu");
 			}
 		});
 		panel.add(button);
 
 		actionLabel = new JLabel("Miljöappen");
 		actionLabel.setFont(new Font("Serif", Font.BOLD, 25));
+		panel.add(actionLabel);
+
+		button = new JButton();
+
+		try {
+			Image img = ImageIO.read(new File("../res/action/add2.png"));
+			button.setIcon(new ImageIcon(img));
+		} catch (IOException e) {
+			System.err.println("error: Couldn't read file \"../res/action/add.png\".");
+		}
+
+		button.setMargin(new Insets(0, 0, 0, 0));
+		button.setBorder(null);
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent d) {
+				add();
+			}
+		});
+		panel.add(button);
+
+		button = new JButton();
+
+		try {
+			Image img = ImageIO.read(new File("../res/action/settings2.png"));
+			button.setIcon(new ImageIcon(img));
+		} catch (IOException e) {
+			System.err.println("error: Couldn't read file \"../res/action/settings.png\".");
+		}
+
+		button.setMargin(new Insets(0, 0, 0, 0));
+		button.setBorder(null);
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent d) {
+			}
+		});
+		panel.add(button);
 
 		actionPanel = new JPanel();
 		actionPanel.add(panel);
+	}
+
+	private void makeProfilPanel() {
+		profilPanel = new JPanel();
+		profilPanel.setLayout(new GridLayout(0, 1, 0, 50));
+
+		profilPanel.add(new JLabel(""));
+
+		JLabel hejLabel = new JLabel("<html><body>Hej Adam!</body></html>", SwingConstants.CENTER);
+		profilPanel.add(hejLabel);
+		hejLabel.setFont(new Font("Serif", Font.BOLD, 32));
+
+		carbonConsumedLabel = new JLabel("<html><body><p align=\"center\">Du har förbrukat " + carbon + " kg CO2<br>denna vecka.</p></body></html>", SwingConstants.CENTER);
+		profilPanel.add(carbonConsumedLabel);
+		carbonConsumedLabel.setFont(new Font("Serif", Font.BOLD, 24));
+
+		carbonLeftLabel = new JLabel("<html><body><p align=\"center\">Du har " + (carbonGoal - carbon) + " kg CO2 kvar<br>till ditt mål på " + carbonGoal + " kg CO2.</p></body></html>", SwingConstants.CENTER);
+		profilPanel.add(carbonLeftLabel);
+		carbonLeftLabel.setFont(new Font("Serif", Font.BOLD, 24));
+
+		profilPanel.add(new JLabel(""));
+		profilPanel.add(new JLabel(""));
+		profilPanel.add(new JLabel(""));
 	}
 
 	private void makeNavPanel() {
@@ -91,8 +185,7 @@ public class Main extends JFrame {
 		button.setBorder(null);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent d) {
-				//back();
-				System.out.println("Back");
+				back();
 			}
 		});
 		panel.add(button);
