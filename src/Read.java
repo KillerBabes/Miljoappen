@@ -36,9 +36,11 @@ public class Read {
 		try {
 			String line = null;
 
-			for (line = file.readLine().trim();
+			for (line = file.readLine();
 			     line != null;
-			     line = file.readLine().trim()) {
+			     line = file.readLine()) {
+				line = line.trim();
+
 				if (line.startsWith("//")) {
 					continue;
 				}
