@@ -27,6 +27,7 @@ public class Application extends JFrame {
 		super(title);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setPreferredSize(new Dimension(480, 800));
+		setResizable(false);
 
 		items = new Items();
 
@@ -52,6 +53,26 @@ public class Application extends JFrame {
 		profilePage.getActionBar().getAddButton().addActionListener(addAction);
 
 		addPage = new AddPage("Add");
+		JComboBox<String> cBox = addPage.getCategoryBox();
+
+		for (String s : items.getCategories()) {
+			cBox.addItem(s);
+		}
+
+		updateItemBox();
+
+		cBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				updateItemBox();
+			}
+		});
+
+		addPage.getAddButton().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				tryAdd();
+			}
+		});
+
 		navBar = new NavBar();
 
 		ActionListener backAction = new ActionListener() {
@@ -77,6 +98,48 @@ public class Application extends JFrame {
 
 		pack();
 		setVisible(true);
+	}
+
+	private void tryAdd() {
+		JComboBox<String> cBox = addPage.getCategoryBox();
+		JComboBox<Item> iBox = addPage.getItemBox();
+		JTextField nField = addPage.getNumField();
+		double num;
+
+		try {
+			num = Double.parseDouble(nField.getText());
+		} catch (NumberFormatException e) {
+			// If not a proper double
+			return;
+		}
+
+		if (num < 0) {
+			return;
+		}
+
+		nField.setText("");
+		user.addCO2Consumed(num * iBox.getItemAt(iBox.getSelectedIndex()).getCO2());
+
+		contentPane.removeAll();
+		contentPane.add(navBar, BorderLayout.SOUTH);
+		contentPane.add(profilePage, BorderLayout.CENTER);
+		profilePage.update(user);
+		currentPage = profilePage;
+
+		pack();
+		setVisible(true);
+		repaint();
+	}
+
+	private void updateItemBox() {
+		JComboBox<String> cBox = addPage.getCategoryBox();
+		JComboBox<Item> iBox = addPage.getItemBox();
+
+		iBox.removeAllItems();
+
+		for (Item it : items.getItems(cBox.getItemAt(cBox.getSelectedIndex()))) {
+			iBox.addItem(it);
+		}
 	}
 
 	private void login() {
