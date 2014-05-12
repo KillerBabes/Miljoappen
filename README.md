@@ -36,3 +36,5 @@ vara).
 [Mobilverision](http://killerbabes.github.io/Miljoappen/mobile/#start_page)
 
 [Youtube-presentation](https://www.youtube.com/watch?v=5fpEqkFJWww)
+
+Datan i res/CO2.db är hemtad från http://carbon.to/ och http://www.foodemissions.com/
