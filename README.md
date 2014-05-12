@@ -1,10 +1,7 @@
-Miljöappen
-==========
+KillerBabes / Miljöappen
+========================
 
-Killerbabes:
-------------
-
-Adam Pielbusch, Erik Lindbom, Jenny Norelius och Max Wällstedt
+_Adam Pielbusch, Erik Lindbom, Jenny Norelius och Max Wällstedt_
 
 Vi upplever att de flesta inte har så bra koll på hur mycket CO2-utsläpp
 det går åt att bara leva som en vanlig svensk.
