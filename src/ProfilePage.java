@@ -54,10 +54,10 @@ public class ProfilePage extends Page {
 
 	public void update(User user) {
 		helloLabel.setText("<html><body>Hej " + user.getName() + "</body></html>");
-		consumedLabel.setText("<html><body>Du har förbrukat " + user.getCO2Consumed() + " kg CO<sub>2</sub> denna vecka.</body></html>");
-		remainingLabel.setText("<html><body>Du har " + (user.getCO2Goal() - user.getCO2Consumed()) + " kg CO<sub>2</sub> kvar av din kvot till ditt<br>mål på " + user.getCO2Goal() + " kg CO<sub>2</sub></body></html>");
-		goalLabel.setText("<html><body><p align=\"center\">" + user.getCO2Goal() +"<br>MÅL</p></body></html>");
-		usedLabel.setText("<html><body><p align=\"center\">" + user.getCO2Consumed() + "<br>KONSUMERAT</p></body></html>");
-		leftLabel.setText("<html><body><p align=\"center\">" + (user.getCO2Goal() - user.getCO2Consumed()) + "<br>KVAR</p></body></html>");
+		consumedLabel.setText("<html><body>Du har förbrukat " + String.format("%.1f", user.getCO2Consumed()) + " kg CO<sub>2</sub> denna vecka.</body></html>");
+		remainingLabel.setText("<html><body>Du har " + String.format("%.1f", user.getCO2Goal() - user.getCO2Consumed()) + " kg CO<sub>2</sub> kvar av din kvot till ditt<br>mål på " + user.getCO2Goal() + " kg CO<sub>2</sub></body></html>");
+		goalLabel.setText("<html><body><p align=\"center\">" + String.format("%.1f", user.getCO2Goal()) +"<br>MÅL</p></body></html>");
+		usedLabel.setText("<html><body><p align=\"center\">" + String.format("%.1f", user.getCO2Consumed()) + "<br>KONSUMERAT</p></body></html>");
+		leftLabel.setText("<html><body><p align=\"center\">" + String.format("%.1f", user.getCO2Goal() - user.getCO2Consumed()) + "<br>KVAR</p></body></html>");
 	}
 }
